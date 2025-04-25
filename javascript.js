@@ -10,8 +10,7 @@ function getComputerChoice(){
     }
 }
 
-function getHumanChoice(){
-    let choice = prompt();
+function getHumanChoice(choice){
     return choice;
 }
 
@@ -20,10 +19,12 @@ function getHumanChoice(){
 function playRound(humanChoice, computerChoice){
     humanChoice=humanChoice.toLowerCase();
     console.log(humanChoice, computerChoice)
+   
 
 
     if (humanChoice == computerChoice){
         console.log(`Tie! Both are ${humanChoice}`)
+        
     }else if (computerChoice == "rock"){
         switch (humanChoice){
             case "scissors":
@@ -40,6 +41,7 @@ function playRound(humanChoice, computerChoice){
             case "paper":
                 console.log(`You lose! Scissors beats Paper!`);
                 computerScore += 1;
+
                 return 0;
             case "rock":
                 console.log(`You win! Rock beats Scissors!`);
@@ -64,16 +66,48 @@ let humanScore = 0;
 let computerScore = 0;
 
 
-function playGame(){
+function playGame(selection){
+    const humanSelection = getHumanChoice(selection);
+    const computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
 
+    score = 
+    `Your score is ${humanScore}, Computer score is ${computerScore}!`;
+    if (humanScore == 5 || computerScore == 5) {
+        if (humanScore == 5) {
+            score = `You win!`;
+        } else {
+            score = `You lose!`;
+        }
+    };
 
-    for (i=1; i<=5; i++){
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection);
-    }
-
-    console.log(`Your score is ${humanScore}, Computer score is ${computerScore}!`)
+    
+    console.log(score);
+    const results = document.querySelector(".results");
+    results.textContent = score;
+    
 }
 
-playGame();
+
+const rock = document.querySelector(".rock");
+const paper = document.querySelector(".paper");
+const scissors = document.querySelector(".scissors");
+
+
+const rockClick = function() {
+    playGame("rock");
+};
+
+const paperClick = function() {
+    playGame("paper");
+};
+
+const scissorsClick = function() {
+    playGame("scissors");
+}
+
+rock.addEventListener("click", rockClick);
+paper.addEventListener("click", paperClick);
+scissors.addEventListener("click", scissorsClick);
+
+

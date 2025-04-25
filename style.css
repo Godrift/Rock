@@ -1,0 +1,16 @@
+.selections {
+    background-color: bisque;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.results {
+    background-color: aqua;
+    text-align: center;
+}
+
+
+
+
+
